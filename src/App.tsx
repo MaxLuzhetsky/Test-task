@@ -1,26 +1,60 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
+import { useSelector } from "react-redux";
+import { ToastContainer } from "react-toastify";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import type { RootState } from "./store";
+
+import Login from "./pages/Login";
+import HomePage from "./pages/HomePage";
+
+
+// Guards
+interface GuardProps {
+  children: React.ReactNode;
+  isAuth: boolean;
 }
 
-export default App;
+function PrivateRoute({ children, isAuth }: GuardProps) {
+  return isAuth ? <>{children}</> : <Navigate to="/login" />;
+}
+
+function PublicRoute({ children, isAuth }: GuardProps) {
+  return !isAuth ? <>{children}</> : <Navigate to="/dashboard" />;
+}
+
+export default function App() {
+  const isAuth = useSelector((state: RootState) => state.auth.isAuth);
+
+  return (
+    <Router>
+      <Routes>
+        <Route
+          path="/login"
+          element={
+            <PublicRoute isAuth={isAuth}>
+              <Login />
+            </PublicRoute>
+          }
+        />
+        <Route
+          path="/"
+          element={
+            <PrivateRoute isAuth={isAuth}>
+              <HomePage />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="*"
+          element={<Navigate to={isAuth ? "/" : "/login"} />}
+        />
+      </Routes>
+      <ToastContainer position="bottom-left"/>
+    </Router>
+  );
+}
