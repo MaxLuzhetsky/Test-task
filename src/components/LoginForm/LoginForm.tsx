@@ -9,7 +9,7 @@ import Button from "../../components/Button/Button";
 
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const passwordRegex =
-  /^(?=.*[A-Z])(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]).{6,}$/;
+  /^(?=.*[A-Z])(?=.*[!@#$%^&*()_+\-=\]{};':"\\|,.<>/?]).{6,}$/;
 
 const LoginForm: React.FC = () => {
   const [email, setEmail] = useState<string>("");
@@ -19,7 +19,6 @@ const LoginForm: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
 
   const handleLogin = () => {
-    // Validation
     if (!emailRegex.test(email)) {
       setError("Invalid email address");
       return;
@@ -31,7 +30,7 @@ const LoginForm: React.FC = () => {
       return;
     }
 
-    setError(""); // Clear error if validation passes
+    setError("");
     dispatch(login({ email, password }));
   };
 
@@ -47,9 +46,7 @@ const LoginForm: React.FC = () => {
         placeholder="Password"
         handleChange={(e) => setPassword(e.target.value)}
       />
-      {error && (
-        <p style={{ color: "red", fontSize: "0.9rem", margin: 0 }}>{error}</p>
-      )}
+      {error && <p className="login__error">{error}</p>}
       <Button title="Login" styles="main" handleClick={handleLogin} />
     </>
   );

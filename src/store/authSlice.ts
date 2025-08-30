@@ -1,4 +1,3 @@
-// store/authSlice.ts
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface AuthState {
@@ -15,7 +14,10 @@ const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    login: (state, action: PayloadAction<{ email: string; password: string }>) => {
+    login: (
+      state,
+      action: PayloadAction<{ email: string; password: string }>
+    ) => {
       state.isAuth = true;
       state.email = action.payload.email;
       localStorage.setItem("Email", action.payload.email);

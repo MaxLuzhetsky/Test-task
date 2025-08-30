@@ -1,12 +1,11 @@
-// store/authSlice.ts
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface CoursesState {
-   courses:number[]
+  courses: number[];
 }
 
 const initialState: CoursesState = {
-    courses:[]
+  courses: [],
 };
 
 const coursesSlice = createSlice({
@@ -14,13 +13,17 @@ const coursesSlice = createSlice({
   initialState,
   reducers: {
     purchase: (state, action: PayloadAction<number>) => {
-     if(!state.courses.includes(action.payload)){
-        state.courses.push(action.payload)
-     }
+      if (!state.courses.includes(action.payload)) {
+        state.courses.push(action.payload);
+      }
     },
- 
+    remove: (state, action: PayloadAction<number>) => {
+      state.courses = state.courses.filter(
+        (courseId) => courseId !== action.payload
+      );
+    },
   },
 });
 
-export const { purchase } = coursesSlice.actions;
+export const { purchase, remove } = coursesSlice.actions;
 export default coursesSlice.reducer;

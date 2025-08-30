@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import authReducer from "./authSlice";
-import coursesReducer from './coursesSlice'
-import videoReducer from './videoSlice'
+import coursesReducer from "./coursesSlice";
+import videoReducer from "./videoSlice";
 
 export const store = configureStore({
   reducer: {

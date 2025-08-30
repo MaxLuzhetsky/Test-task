@@ -8,24 +8,18 @@ import { useSelector } from "react-redux";
 import { ToastContainer } from "react-toastify";
 
 import type { RootState } from "./store";
-
+import type { GuardProps } from "./types";
 import Login from "./pages/Login";
 import HomePage from "./pages/HomePage";
+import "./App.scss";
 
-
-// Guards
-interface GuardProps {
-  children: React.ReactNode;
-  isAuth: boolean;
-}
-
-function PrivateRoute({ children, isAuth }: GuardProps) {
+const PrivateRoute: React.FC<GuardProps> = ({ children, isAuth }) => {
   return isAuth ? <>{children}</> : <Navigate to="/login" />;
-}
+};
 
-function PublicRoute({ children, isAuth }: GuardProps) {
+const PublicRoute: React.FC<GuardProps> = ({ children, isAuth }) => {
   return !isAuth ? <>{children}</> : <Navigate to="/dashboard" />;
-}
+};
 
 export default function App() {
   const isAuth = useSelector((state: RootState) => state.auth.isAuth);
@@ -49,12 +43,9 @@ export default function App() {
             </PrivateRoute>
           }
         />
-        <Route
-          path="*"
-          element={<Navigate to={isAuth ? "/" : "/login"} />}
-        />
+        <Route path="*" element={<Navigate to={isAuth ? "/" : "/login"} />} />
       </Routes>
-      <ToastContainer position="bottom-left"/>
+      <ToastContainer position="bottom-left" />
     </Router>
   );
 }

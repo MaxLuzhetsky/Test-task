@@ -16,26 +16,9 @@ const CoursesList: React.FC = () => {
     loadCourses();
   }, []);
 
-  console.log(courses);
-
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        padding: "20px",
-        boxSizing: "border-box",
-      }}
-    >
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          flexWrap: "wrap",
-          justifyContent: "center",
-          gap: "20px",
-        }}
-      >
+    <div className="courses-list">
+      <div className="courses-list__container">
         {courses.map((course) => (
           <CourseCard key={course.id} {...course} />
         ))}

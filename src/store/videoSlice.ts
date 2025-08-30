@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface VideoState {
-  progress: Record<number, number>; 
+  progress: Record<number, number>;
   completed: number[];
 }
 
@@ -14,7 +14,10 @@ const videoSlice = createSlice({
   name: "video",
   initialState,
   reducers: {
-    setProgress: (state, action: PayloadAction<{ id: number; time: number }>) => {
+    setProgress: (
+      state,
+      action: PayloadAction<{ id: number; time: number }>
+    ) => {
       state.progress[action.payload.id] = action.payload.time;
     },
     markCompleted: (state, action: PayloadAction<number>) => {

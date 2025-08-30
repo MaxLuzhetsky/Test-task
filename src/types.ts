@@ -9,7 +9,7 @@ export type ButtonProps = {
   title: string;
   handleClick: () => void;
   type?: string;
-  styles: "main" | "borderless";
+  styles: "main" | "secondary" | "cancel";
 };
 
 export type Course = {
@@ -26,4 +26,9 @@ export type ModalProps = {
   title?: string;
   children: React.ReactNode;
   videoUrl: string;
+};
+
+export type GuardProps = {
+  children: React.ReactNode;
+  isAuth: boolean;
 };
