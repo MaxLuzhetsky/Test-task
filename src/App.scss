@@ -74,6 +74,7 @@
   background-color: #f5f5f5;
   color: #d44300;
   font-weight: 500;
+  font-size: 20px;
   cursor: pointer;
   transition: all 0.3s ease;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
@@ -99,21 +100,31 @@
 }
 
 .button-main,
-.button-secondary {
+.button-secondary .button-cancel {
   font-size: 20px;
   font-weight: 600;
 }
 
 .login {
-  padding: 20px;
-  max-width: 400px;
-  margin: 0 auto;
-  padding-top: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100dvh;
+  overflow: hidden;
+  margin: 0;
+  background-image: url("./assets/images/background.png");
+  background-size: cover;
+  background-position: center;
 
   &__container {
     display: flex;
     flex-direction: column;
+    background-color: white;
+    padding: 50px;
+    border-radius: 5px;
     gap: 10px;
+    max-width: 400px;
   }
 
   &__title {
@@ -137,10 +148,9 @@
 }
 
 .home-page {
-  width: 100vw;
   height: 100%;
   background-color: #042c68;
-  padding-bottom: 40px;
+  overflow-x: hidden;
 
   &__container {
     background-color: white;
@@ -182,12 +192,11 @@
 }
 
 .course-card {
- 
   max-width: 700px;
   min-height: 350px;
   height: auto;
   max-height: 700px;
-  
+
   margin: 0 10px 20px 10px;
   padding: 15px;
   box-sizing: border-box;
@@ -212,7 +221,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    h3{
+    h3 {
       font-size: 24px;
     }
   }
@@ -331,5 +340,19 @@
     cursor: pointer;
     border: none;
     font-size: 20px;
+  }
+}
+
+.footer {
+  padding: 20px;
+  margin-top: 40px;
+  text-align: center;
+  background-color: #f5f5f5;
+  border-top: 1px solid #ddd;
+
+  &__text {
+    margin: 0;
+    font-size: 14px;
+    color: #666;
   }
 }

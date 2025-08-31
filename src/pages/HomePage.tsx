@@ -1,4 +1,5 @@
 import CoursesList from "../components/CoursesList/CoursesList";
+import Footer from "../components/Footer/Footer";
 import Header from "../components/Header/Header";
 
 const HomePage: React.FC = () => {
@@ -16,6 +17,7 @@ const HomePage: React.FC = () => {
         </div>
         <CoursesList />
       </div>
+      <Footer />
     </div>
   );
 };
